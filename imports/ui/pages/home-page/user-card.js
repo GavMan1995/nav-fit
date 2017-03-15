@@ -10,7 +10,7 @@ export default function GroupUserCard(props) {
       <h2>{user.username}</h2>
       <div className='c-fit-group__user-info'>
         <p>Total Steps: {parseInt(user.profile.totalSteps).toLocaleString()}</p>
-        <p>Goal Contribution: {Math.round(user.profile.totalSteps / group.stepGoal * 100)}%</p>
+        <p>Goal Contribution: {Math.ceil(user.profile.totalSteps / group.stepGoal * 100)}%</p>
       </div>
     </div>
   )

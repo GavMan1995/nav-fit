@@ -20,14 +20,15 @@ class Profile extends Component {
             <h1>{user.username}</h1>
           </div>
 
-          <div className='c-fit-card c-fit-card--full-width'>
+          <div className='c-fit-profile__card'>
+            <h1>Your Steps</h1>
             {steps.map((step) => {
               let month = step.createdAt.getMonth()
               let day = step.createdAt.getDate()
               let year = step.createdAt.getFullYear()
               let steps = parseInt(step.steps).toLocaleString()
               return (
-                <div>
+                <div className='c-fit-profile__card-info'>
                   <h2>{steps} steps</h2>
                   <h3>{month}/{day}/{year}</h3>
                 </div>
@@ -35,7 +36,7 @@ class Profile extends Component {
             })}
           </div>
 
-          <div className=''>
+          <div className='c-fit-profile__card'>
             <h1>Your Groups</h1>
               {groups.map((group) => {
                 let admin = ''
@@ -44,9 +45,9 @@ class Profile extends Component {
                 }
 
                 return (
-                  <div key={group.code} style={{width: '100%', paddingBottom: '16px'}}>
+                  <div className='c-fit-profile__card-info' key={group.code}>
                     <h3>{group.name}{admin}</h3>
-                    <p>code: {group.code}</p>
+                    <p>code: <a>{group.code}</a></p>
                   </div>
                 )
               })}
