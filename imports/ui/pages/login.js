@@ -43,14 +43,14 @@ export default class Login extends Component {
             </div>
           </div>
           <form className='c-fit-form c-fit-form--full-width-input' onSubmit={(event) => this.signUp(event)}>
+            <div className='c-fit-form__file-upload'>
+              <label>{this.state.profileImage}  <span className='fa fa-upload'></span></label>
+              <input onChange={this.profileImage.bind(this)} type='file'/>
+            </div>
             <input ref='email' placeholder='Email' type='email' required />
             <input ref='password' placeholder='Password' type='password' required />
             <input ref='passwordConfirm' placeholder='Confirm Password' type='password' required />
             <input ref='username' placeholder='Username' type='text' required />
-            <div className='c-fit-form__file-upload'>
-              <label>{this.state.profileImage} <span className='fa fa-upload'></span></label>
-              <input onChange={this.profileImage.bind(this)} ref='avatar' placeholder='Profile Pic (url)' type='file'/>
-            </div>
             <div className='c-fit-form__btn'>
               <button type='submit' className='c-btn c-btn--xl c-btn--white c-btn--outline'>Sign Up</button>
             </div>
