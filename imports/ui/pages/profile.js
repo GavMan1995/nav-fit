@@ -14,11 +14,13 @@ class Profile extends Component {
         <div className='c-fit-profile'>
           <div className='c-fit-profile__info'>
             <div className='c-fit-profile__img'>
-              <img src={user.profile.avatar} alt='https://organicthemes.com/demo/profile/files/2012/12/profile_img.png'/>
-              <span>Change</span>
+              <img src={user.profile.avatar}/>
+              <span>change</span>
             </div>
             <h1>{user.username}</h1>
           </div>
+
+
 
           <div className='c-fit-profile__card'>
             <h1>Your Steps</h1>
@@ -57,6 +59,11 @@ class Profile extends Component {
     }
 
     return <div>Loading...</div>
+  }
+
+  componentDidMount() {
+    let widget = uploadcare.Widget('[role=uploadcare-uploader]')
+    console.log(widget.value())
   }
 }
 
