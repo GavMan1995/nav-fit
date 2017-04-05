@@ -9,8 +9,7 @@ class Profile extends Component {
     super(props)
 
     this.state = {
-      changePic: false,
-      profileImage: 'Upload Profile Pic'
+      profileImage: 'Change Pic'
     }
   }
   render () {
@@ -21,16 +20,13 @@ class Profile extends Component {
       return (
         <div className='c-fit-profile'>
           <div className='c-fit-profile__info'>
-            <div className='c-fit-profile__img' onClick={this.toggleChangePic.bind(this)}>
+            <div className='c-fit-profile__img'>
               <img src={user.profile.avatar}/>
-              <span>change</span>
+              <div className='c-profile__change'>
+                <input onChange={this.profileImage.bind(this)} type='file'/>
+              </div>
             </div>
             <h1>{user.username}</h1>
-
-            <div className='c-fit-form__file-upload' style={this.state.changePic ? {display: 'block'} : {display: 'none'}}>
-              <label>{this.state.profileImage}  <span className='fa fa-upload'></span></label>
-              <input onChange={this.profileImage.bind(this)} type='file'/>
-            </div>
           </div>
 
           <div className='c-fit-profile__card'>
@@ -72,18 +68,15 @@ class Profile extends Component {
     return <div>Loading...</div>
   }
 
-  toggleChangePic () {
-    this.setState({changePic: !this.state.changePic})
-  }
-
   profileImage (event) {
-    console.log(Meteor.settings.public.UploadCarePublicId)
+    console.log(Meteor.settings.public)
     const file = event.target.files[0]
     this.setState({profileImage: 'Loading...'})
 
     let data = new FormData()
     data.append('file', file)
     data.append('UPLOADCARE_PUB_KEY', Meteor.settings.public.UploadCarePublicId)
+    data.append('UPLOADCARE_STORE', '1')
 
     window.fetch('https://upload.uploadcare.com/base/', {
       method: 'POST',
@@ -101,7 +94,7 @@ class Profile extends Component {
         {_id: Meteor.userId()},
         {$set: {"profile.avatar": `https://ucarecdn.com/${res.file}/-/progressive/yes/-/scale_crop/400x400/center/`}}
       )
-      this.setState({changePic: false, profileImage: 'Upload Profile Pic'})
+      this.setState({profileImage: 'Upload Profile Pic'})
       window.location.reload(true)
     }).catch((err) => {
       console.log(err)

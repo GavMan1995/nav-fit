@@ -29,7 +29,7 @@ class Header extends Component {
             <div className='c-fit-select'>
               <button
                 onClick={this.toggleDropdown.bind(this)}
-                className='c-btn c-btn--lg c-btn--outline c-btn--white'>
+                className='c-btn c-btn--lg c-btn--outline c-btn--white c-btn--fit-select'>
                 {group ? group.name : 'no group selected'} &#8681;
               </button>
               <div className={`c-fit-select__options ${this.state.isOpen ? 'is-open' : ''}`}>
@@ -40,9 +40,9 @@ class Header extends Component {
                     </p>
                   )
                 })}
+                <a href='add-group'><p>Add Group</p></a>
               </div>
             </div>
-            <a href='add-group'>Add Group</a>
             <a href='log-activity'>Log Activity</a>
             <a href='profile'>Profile</a>
             <a onClick={this.signOut.bind(this)}>Signout</a>

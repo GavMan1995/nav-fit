@@ -1,4 +1,4 @@
 node_modules/
 settings.json
-settings-development.json
+dev-settings.json
 settings-production.json
